@@ -7,7 +7,7 @@ from utils.recipes.factory import make_recipe
 
 #HTTP request
 def home(resquest):
-    recipes = Recipe.objects.all().order_by('-id') #pegando todas as Recipes do banco de dados
+    recipes = Recipe.objects.filter(is_published=True).order_by('-id') #pegando todas as Recipes do banco de dados
     
     return render(
         resquest,
@@ -20,13 +20,16 @@ def home(resquest):
 
 #HTTP request
 def category(resquest, category_id):
-    recipes = Recipe.objects.filter(category__id=category_id).order_by('-id') #pegando todas as Recipes do banco de dados
+    recipes = Recipe.objects.filter(
+        category__id=category_id,
+        is_published=True
+        ).order_by('-id') #pegando todas as Recipes do banco de dados
     
     return render(
         resquest,
-        'recipes/pages/home.html',
+        'recipes/pages/category.html',
         context= {
-            'title': 'Home | Recipes',
+            'title': 'Category | Recipes',
             'recipes': recipes
         },
         ) 
