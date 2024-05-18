@@ -43,13 +43,18 @@ def category(resquest, category_id):
         ) 
 
 def recipe(resquest, id):
+    recipe = Recipe.objects.filter(
+        pk=id,
+        is_published=True,
+    ).order_by('-id').first()
     return render(
         resquest,
         'recipes/pages/recipe-view.html',
         context= {
             'title': 'Receita | Recipes',
-            'recipe': make_recipe(),
+            'recipe': recipe,
             'is_detail_page': True,
+            
         },
         )
 
