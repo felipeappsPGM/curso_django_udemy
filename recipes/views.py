@@ -1,16 +1,33 @@
 from django.shortcuts import render
+
+from recipes.models import Recipe
 from utils.recipes.factory import make_recipe
+
 # Create your views here.
-from django.http import HttpResponse
+
 #HTTP request
 def home(resquest):
+    recipes = Recipe.objects.all().order_by('-id') #pegando todas as Recipes do banco de dados
     
     return render(
         resquest,
         'recipes/pages/home.html',
         context= {
             'title': 'Home | Recipes',
-            'recipes': [make_recipe() for _ in range(10)]
+            'recipes': recipes
+        },
+        ) 
+
+#HTTP request
+def category(resquest, category_id):
+    recipes = Recipe.objects.filter(category__id=category_id).order_by('-id') #pegando todas as Recipes do banco de dados
+    
+    return render(
+        resquest,
+        'recipes/pages/home.html',
+        context= {
+            'title': 'Home | Recipes',
+            'recipes': recipes
         },
         ) 
 
