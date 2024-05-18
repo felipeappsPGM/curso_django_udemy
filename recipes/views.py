@@ -47,11 +47,12 @@ def recipe(resquest, id):
         pk=id,
         is_published=True,
     ).order_by('-id').first()
+    recipe = get_object_or_404(Recipe, pk=id, is_published=True)
     return render(
         resquest,
         'recipes/pages/recipe-view.html',
         context= {
-            'title': 'Receita | Recipes',
+            'title': f'{recipe.title} | Recipes',
             'recipe': recipe,
             'is_detail_page': True,
             
