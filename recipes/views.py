@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 from recipes.models import Recipe
@@ -25,11 +26,14 @@ def category(resquest, category_id):
         is_published=True
         ).order_by('-id') #pegando todas as Recipes do banco de dados
     
+    if not recipes:
+        raise Http404('not found')
+    
     return render(
         resquest,
         'recipes/pages/category.html',
         context= {
-            'title': 'Category | Recipes',
+            'title': f'{recipes.first().category.name} - Category | Recipes',
             'recipes': recipes
         },
         ) 
