@@ -14,12 +14,11 @@ class RecipeModelTestCase(RecipeTestBase):
     def make_recipe_not_default(self):
         
         recipe = Recipe(
-            self, 
-            author=self.make_author(username='felipe user'),
-            category= self.make_category(name='felipe frito'),
+            author= self.make_author(username='felipe user aaa'),
+            category= self.make_category(name='felipe frito aaa'),
             title='Recipe-title',
             description='Recipe description',
-            slug='recipe-slug',
+            slug='recipe-slug-for-no-defaults',
             preparation_time=10,
             preparation_time_unit='seconds',
             servings=5,
@@ -55,7 +54,7 @@ class RecipeModelTestCase(RecipeTestBase):
         recipe = self.make_recipe_not_default()
         self.assertFalse(
             recipe.preparation_steps_is_html,
-            msg='recipe preparation_steps_is_html deve ser falso'
+            msg='recipe preparation_steps_is_html is not false'
         )
         
         
@@ -63,7 +62,7 @@ class RecipeModelTestCase(RecipeTestBase):
         recipe = self.make_recipe_not_default()
         self.assertFalse(
             recipe.is_published,
-            msg='recipe preparation_steps_is_html deve ser falso'
+            msg='recipe is_published id not false'
         )
         
     def test_recipe_string_representation(self): 
