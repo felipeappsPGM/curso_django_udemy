@@ -9,7 +9,7 @@ from recipes.models import Recipe
 from utils.pagination import make_pagination
 
 # Create your views here.
-PER_PAGES = os.environ.get('PER_PAGE', 6)
+PER_PAGES = int(os.environ.get('PER_PAGE', 6))
 #HTTP request
 def home(request):
     # recipes = get_list_or_404(
