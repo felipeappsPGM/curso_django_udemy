@@ -1,6 +1,7 @@
 
 import os
 
+from django.contrib import messages
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_list_or_404, get_object_or_404, render
@@ -26,6 +27,8 @@ def home(request):
         queryset=recipe,
         per_page=PER_PAGES, 
     )
+    messages.success(request, "você ta pesquisando algo né? estou vendo uhhhh")
+    
     return render(
         request,
         'recipes/pages/home.html',
@@ -109,6 +112,7 @@ def search(request):
         queryset=recipes,
         per_page=PER_PAGES, 
     )
+    
     return render(
         request,
         'recipes/pages/search.html',

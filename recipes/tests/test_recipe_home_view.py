@@ -64,5 +64,13 @@ class RecipeHomeViewTest(RecipeTestBase):
         )
         
 
-  
+    def test_recipe_home_template_do_dont_load_recipes_not_published(self):
+        """
+        Test recipe is_published false dont show
+        """
+        ...
+        self.make_recipe(is_published=False, category=self.make_category(), author=self.make_author())
         
+
+        response = self.client.get(reverse('recipes:home'))
+    

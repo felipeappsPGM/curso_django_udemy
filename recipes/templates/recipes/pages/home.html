@@ -1,7 +1,8 @@
 {% extends "global/base.html" %}
 
 {% block content %}
-    <div class="main-content main-content-list container">
+    {% include "recipes/partials/messages.html" %}
+    <div class="main-content main-content-list container messages-container">
         {% for recipe in recipes %}
             {% include "recipes/partials/recipe.html" %}
         {% empty %}
